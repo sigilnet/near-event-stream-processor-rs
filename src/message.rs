@@ -7,7 +7,10 @@ use rdkafka::{
     types::RDKafkaErrorCode,
     Message, Offset, TopicPartitionList,
 };
+use serde::de::DeserializeOwned;
 use tracing::warn;
+
+use crate::error::Error;
 
 pub struct StreamerMessage {
     pub message: OwnedMessage,
@@ -55,5 +58,19 @@ impl StreamerMessage {
             .collect();
 
         Ok(topics)
+    }
+
+    pub fn event<T: DeserializeOwned>(&self) -> Result<T, Error> {
+        match self.message.payload_view::<str>() {
+            Some(Ok(payload)) => {
+                let event = serde_json::from_str::<T>(payload);
+                match event {
+                    Ok(event) => Ok(event),
+                    Err(err) => Err(Error::PayloadDeserializedError(err)),
+                }
+            }
+            Some(Err(_)) => Err(Error::PayloadIsNotString),
+            None => Err(Error::NoPayload),
+        }
     }
 }

@@ -11,6 +11,7 @@ use tokio::sync::mpsc;
 use tracing::warn;
 
 pub mod config;
+pub mod error;
 pub mod message;
 
 #[allow(clippy::type_complexity)]

@@ -320,6 +320,9 @@ dependencies = [
  "openssl",
  "openssl-probe",
  "rdkafka",
+ "serde",
+ "serde_json",
+ "thiserror",
  "tokio",
  "tracing",
 ]
