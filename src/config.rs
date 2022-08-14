@@ -12,6 +12,7 @@ pub struct StreamerConfig {
 
     pub group_id: String,
 
+    #[builder(default = r#""earliest".to_string()"#)]
     pub auto_offset_reset: String,
 
     #[builder(default = "6000")]
