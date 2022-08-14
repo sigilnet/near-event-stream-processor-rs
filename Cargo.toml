@@ -1,7 +1,13 @@
 [package]
 name = "near-event-stream-processor"
-version = "0.1.0"
+version = "0.0.1"
+authors = ["Sigil Network <contact@sigilnet.com>"]
 edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "A Rust library to process NEAR Event Streams "
+repository = "https://github.com/sigilnet/near-event-stream-processor-rs"
+readme = "README.md"
+keywords = ["near", "event", "streaming"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
